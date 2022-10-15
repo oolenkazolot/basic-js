@@ -1,3 +1,4 @@
+const { reporters } = require('mocha');
 const { NotImplementedError } = require('../extensions/index.js');
 
 /**
@@ -23,11 +24,48 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  const res = [];
+  for (let i = 0; i < matrix.length; i++) {
+    const row = matrix[i];
+    const newRowMatrix = [];
+    for (let j = 0; j < row.length; j++) {
+      if (row[j]) {
+        newRowMatrix.push(1);
+        continue;
+      }
+      let countMine = 0;
+      if (row[j - 1]) {
+        countMine++;
+      }
+      if (row[j + 1]) {
+        countMine++;
+      }
+      if (matrix[i + 1] && matrix[i + 1][j]) {
+        countMine++;
+      }
+      if (matrix[i + 1] && matrix[i + 1][j + 1]) {
+        countMine++;
+      }
+      if (matrix[i + 1] && matrix[i + 1][j - 1]) {
+        countMine++;
+      }
+      if (matrix[i - 1] && matrix[i - 1][j]) {
+        countMine++;
+      }
+      if (matrix[i - 1] && matrix[i - 1][j + 1]) {
+        countMine++;
+      }
+      if (matrix[i - 1] && matrix[i - 1][j - 1]) {
+        countMine++;
+      }
+      newRowMatrix.push(countMine);
+    }
+    res.push(newRowMatrix);
+  }
+  return res;
 }
 
 module.exports = {
-  minesweeper
+  minesweeper,
 };

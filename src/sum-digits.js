@@ -32,8 +32,6 @@ function getSumOfDigits(n) {
   return res;
 }
 
-// console.log(getSumOfDigits(100));
-
 module.exports = {
   getSumOfDigits,
 };

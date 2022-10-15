@@ -28,8 +28,6 @@ function createDreamTeam(members) {
   return res.sort().join('');
 }
 
-// console.log(createDreamTeam([]));
-
 module.exports = {
   createDreamTeam,
 };
